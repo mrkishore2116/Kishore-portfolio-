@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Kishore S | 3D Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070d17;--panel:rgba(12,22,38,.78);--ink:#eaf2fb;--mute:#9db0c4;--line:rgba(120,160,200,.25);--acc:#38e1c6;--hi:#f2b705;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 'IBM Plex Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;line-height:1.08}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+main{position:relative;z-index:1}
+section{max-width:960px;margin:0 auto;padding:80px 20px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-bottom:120px}
+.hero h1{font-size:clamp(48px,11vw,104px);font-weight:800;letter-spacing:-.03em}
+.role{font-size:clamp(18px,3vw,26px);color:var(--acc);min-height:1.6em;margin:14px 0}
+.hero p{max-width:44ch;color:var(--mute)}
+h2{font-size:clamp(28px,5vw,42px);font-weight:800;margin-bottom:26px}
+.glass{background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:20px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.glass h3{font-size:20px;margin-bottom:6px}
+.glass p,.glass li{color:var(--mute);font-size:15px;margin:4px 0}
+.glass ul{padding-left:18px;margin:8px 0 0}
+.ic{font-size:26px;display:block;margin-bottom:6px}
+.tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;border:1px solid var(--line);margin:4px 4px 0 0;color:var(--ink)}
+.ph{border-style:dashed}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;border:1.5px solid var(--acc);color:var(--ink);text-decoration:none;font:500 15px 'IBM Plex Sans';background:none;cursor:pointer;transition:transform .15s,background .15s}
+.btn.p{background:var(--hi);border-color:var(--hi);color:#1a1400}
+.btn:hover{transform:translateY(-2px)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.bar{margin-bottom:14px}
+.bar .t{display:flex;justify-content:space-between;font-size:15px;margin-bottom:5px}
+.bar .t span{color:var(--mute)}
+.track{height:9px;background:rgba(120,160,200,.18);border-radius:6px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--hi));border-radius:6px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.two{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:760px){.two{grid-template-columns:1fr 1fr}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+/* social dock */
+.dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:10;display:flex;gap:6px;padding:8px 10px;background:rgba(12,22,38,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;max-width:calc(100% - 20px)}
+.dock a{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;transition:background .2s,transform .2s}
+.dock a:hover{background:var(--acc);color:#04201c;transform:translateY(-3px)}
+.dock svg{width:20px;height:20px;fill:currentColor;flex:none}
+@media(max-width:480px){.dock a span{display:none}.dock a{padding:12px}}
+.nolink{display:none}
+footer{position:relative;z-index:1;text-align:center;color:var(--mute);font-size:13px;padding:10px 20px 110px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+#resume{display:none}
+@media print{body>*:not(#resume){display:none!important}html,body{background:#fff!important}
+#resume{display:block!important;color:#000;font:11pt/1.4 Arial,sans-serif;padding:0}
+#resume h1{font:700 20pt Arial;text-align:center;margin:0}#resume .c{text-align:center;margin:2px 0 8px}
+#resume h2{font:700 11.5pt Arial;color:#1f3864;border-bottom:1px solid #000;margin:12px 0 4px;padding:0}
+#resume p{margin:2px 0;color:#000;font-size:11pt}#resume ul{margin:2px 0 0;padding-left:18px}#resume li{color:#000;font-size:11pt}}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<main>
+<section class="hero" id="home">
+<h1>Kishore S</h1>
+<div class="role" id="role">Mechatronics Engineering Student</div>
+<p>CAD, embedded systems and Python, backed by hands-on time on the Ashok Leyland shop floor. Open to 2026 internships and entry-level roles in robotics, automation, AI and embedded systems. Move your cursor, or scroll, to control the arm.</p>
+<div class="btns"><a class="btn p" href="#experience">See experience</a><a class="btn" href="#contact">Contact me</a><button class="btn dlb" type="button">⬇ Download resume (PDF)</button></div>
+</section>
+
+<section id="about" class="rv">
+<h2>About</h2>
+<div class="two">
+<div class="glass"><p>B.E. Mechatronics Engineering student at Coimbatore Institute of Engineering and Technology (expected 2028). I design in AutoCAD and Fusion 360, program in C and Python, and enjoy automotive engineering, from go-karting events to a summer internship at Ashok Leyland.</p><p>I have also taken part in hackathons and a Generative AI Buildathon, and I'm open to relocation.</p></div>
+<div class="glass"><h3>Career objective</h3><p>Mechatronics student seeking an internship or entry-level role where I can apply CAD design, embedded systems and programming skills to real-world engineering projects while building hands-on technical experience.</p></div>
+</div>
+</section>
+
+<section id="skills" class="rv">
+<h2>Skills</h2>
+<div class="two">
+<div class="glass" id="bars"></div>
+<div class="glass"><h3>Languages and tools</h3><span class="tag">C</span><span class="tag">Python</span><span class="tag">Arduino</span><span class="tag">AutoCAD</span><span class="tag">Fusion 360</span>
+<h3 style="margin-top:18px">Core interests</h3><span class="tag">Mechatronic systems</span><span class="tag">CAD modeling</span><span class="tag">Automation</span><span class="tag">Embedded</span><span class="tag">AI / ML</span>
+<h3 style="margin-top:18px">Soft skills</h3><span class="tag">Problem solving</span><span class="tag">Communication</span><span class="tag">Teamwork</span><span class="tag">Time management</span>
+<h3 style="margin-top:18px">Languages</h3><span class="tag">English</span><span class="tag">Tamil</span></div>
+</div>
+</section>
+
+<section id="experience" class="rv">
+<h2>Internship experience</h2>
+<div class="grid">
+<div class="glass"><span class="ic">🏭</span><h3>Summer Intern, Ashok Leyland</h3><p>Unit-II, Hosur | Jun - Jul 2026</p><ul><li>Completed a one-month internship gaining exposure to manufacturing and assembly processes on the shop floor.</li><li>Observed and assisted with production line operations, quality checks and industrial workflows in a heavy vehicle manufacturing plant.</li></ul></div>
+<div class="glass"><span class="ic">🐍</span><h3>Online Intern, CodeAlpha</h3><p>Remote | Oct 2025</p><ul><li>Completed a one-month remote internship focused on Python programming tasks and project-based assignments.</li><li>Strengthened programming fundamentals and problem-solving through hands-on coding exercises.</li></ul></div>
+</div>
+</section>
+
+<section id="projects" class="rv">
+<h2>Projects</h2>
+<div class="grid">
+<div class="glass"><h3>AI Resume Builder</h3><p>Web app that generates a formatted resume, deployed on GitHub Pages.</p><span class="tag">HTML</span><span class="tag">GitHub Pages</span><span class="tag">AI</span></div>
+<div class="glass"><h3>CodeAlpha Python tasks</h3><p>Project-based Python assignments completed during the internship.</p><span class="tag">Python</span></div>
+<div class="glass ph"><h3>Next: Fusion 360 mechanism design</h3><p>Planned. Add your CAD model renders here.</p></div>
+<div class="glass ph"><h3>Next: Arduino obstacle-avoiding robot</h3><p>Planned.</p></div>
+</div>
+</section>
+
+<section id="certificates" class="rv">
+<h2>Certifications and training</h2>
+<div class="grid">
+<div class="glass"><span class="ic">📐</span><h3>Autodesk Fusion 360</h3><p>Certification</p></div>
+<div class="glass"><span class="ic">🚗</span><h3>AMBAL Auto Workshop</h3><p>Training program</p></div>
+<div class="glass"><span class="ic">🐍</span><h3>CodeAlpha Online Internship</h3><p>Completion certificate</p></div>
+<div class="glass"><span class="ic">🤖</span><h3>Robotic Process Automation</h3><p>Automation Anywhere</p></div>
+</div>
+</section>
+
+<section id="achievements" class="rv">
+<h2>Achievements and activities</h2>
+<div class="grid">
+<div class="glass"><span class="ic">🏁</span><h3>Go-Karting events</h3><p>co-Kart Championship; interest in automotive engineering and vehicle dynamics.</p></div>
+<div class="glass"><span class="ic">💡</span><h3>Generative AI Buildathon</h3></div>
+<div class="glass"><span class="ic">⚡</span><h3>Hackathons</h3></div>
+<div class="glass"><span class="ic">🛠️</span><h3>Technical workshops</h3></div>
+</div>
+</section>
+
+<section id="education" class="rv">
+<h2>Education</h2>
+<div class="glass"><h3>B.E. Mechatronics Engineering</h3><p>Coimbatore Institute of Engineering and Technology, Coimbatore | Expected 2028</p></div>
+</section>
+
+<section id="contact" class="rv">
+<h2>Contact</h2>
+<div class="glass"><p>Coimbatore, Tamil Nadu, India. Open to relocation for internships and jobs.</p>
+<div class="btns"><a class="btn p" href="mailto:mrkishore2116@gmail.com">mrkishore2116@gmail.com</a><a class="btn" href="tel:+918056405923">+91 80564 05923</a><button class="btn dlb" type="button">⬇ Download resume (PDF)</button></div></div>
+</section>
+</main>
+<section id="resume" aria-hidden="true">
+<h1>KISHORE S</h1>
+<p class="c">Coimbatore, Tamil Nadu | +91 8056405923 | mrkishore2116@gmail.com | linkedin.com/in/kishore-s-48b024358 | github.com/mrkishore2116</p>
+<h2>OBJECTIVE</h2>
+<p>Mechatronics Engineering student seeking an internship or entry-level opportunity to apply CAD design, embedded systems and programming skills to real-world engineering projects while developing hands-on technical experience.</p>
+<h2>EDUCATION</h2>
+<p><b>B.E. Mechatronics Engineering</b>, Coimbatore Institute of Engineering and Technology, Coimbatore | Expected 2028</p>
+<h2>TECHNICAL SKILLS</h2>
+<ul><li>Programming Languages: C, Python</li><li>Design Software: AutoCAD, Fusion 360</li><li>Core Interests: Mechatronic Systems, CAD Modeling, Automation</li></ul>
+<h2>INTERNSHIP EXPERIENCE</h2>
+<p><b>Summer Intern, Ashok Leyland, Unit-II, Hosur</b> | Jun 2026 - Jul 2026</p>
+<ul><li>Completed a one-month summer internship gaining exposure to manufacturing and assembly processes on the shop floor.</li><li>Observed and assisted with production line operations, quality checks and industrial workflows in a heavy vehicle manufacturing environment.</li></ul>
+<p><b>Intern (Online), CodeAlpha</b> | Oct 2025</p>
+<ul><li>Completed a one-month remote internship focused on Python programming tasks and project-based assignments.</li><li>Strengthened programming fundamentals and problem-solving skills through hands-on coding exercises.</li></ul>
+<h2>PROJECTS</h2>
+<ul><li>AI Resume Builder (HTML, GitHub Pages): built and deployed a web-based resume generator.</li></ul>
+<h2>CERTIFICATIONS &amp; TRAINING</h2>
+<ul><li>Autodesk Fusion 360 - Certification</li><li>AMBAL Auto Workshop - Training Program</li><li>CodeAlpha Online Internship - Completion Certificate</li><li>Robotic Process Automation - Automation Anywhere</li></ul>
+<h2>EXTRACURRICULAR ACTIVITIES</h2>
+<ul><li>Participated in Go-Karting events (co-Kart Championship), demonstrating interest in automotive engineering and vehicle dynamics.</li><li>Participated in a Generative AI Buildathon and hackathons.</li></ul>
+<h2>ADDITIONAL INFORMATION</h2>
+<ul><li>Languages Known: English, Tamil</li><li>Open to relocation for internship/job opportunities</li></ul>
+</section>
+<footer>© 2026 Kishore S</footer>
+
+<nav class="dock" aria-label="Social links">
+<a href="https://www.linkedin.com/in/kishore-s-48b024358" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.6h.06c.53-1 1.82-2.05 3.75-2.05 4 0 4.74 2.6 4.74 6V21h-4v-5c0-1.2 0-2.75-1.7-2.75s-1.95 1.3-1.95 2.65V21h-4z"/></svg><span>LinkedIn</span></a>
+<a href="https://github.com/mrkishore2116" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg><span>GitHub</span></a>
+<a href="mailto:mrkishore2116@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.2L4.5 7v.1L12 12.4 19.5 7.1V7z"/></svg><span>Email</span></a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+document.querySelectorAll(".dlb").forEach(function(b){b.onclick=function(){window.print()}});
+// Skills chart
+var S=[["Python",60],["C",55],["AutoCAD",60],["Fusion 360",60],["Arduino",55],["Machine learning (basic)",35]],bars=document.getElementById("bars");
+S.forEach(function(s){var d=document.createElement("div");d.className="bar";d.innerHTML='<div class="t"><b>'+s[0]+'</b><span>'+s[1]+'%</span></div><div class="track"><div class="fill" data-w="'+s[1]+'"></div></div>';bars.appendChild(d)});
+
+// Reveal on scroll
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");e.target.querySelectorAll(".fill").forEach(function(f){f.style.width=f.dataset.w+"%"})}})},{threshold:.15});
+document.querySelectorAll(".rv").forEach(function(x){io.observe(x)});
+
+// Typed role
+var R=["Mechatronics Engineering Student","Robotics and Automation","Embedded Systems and AI"],ri=0,ci=0,del=false,el=document.getElementById("role"),calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+if(!calm)(function t(){var w=R[ri];ci+=del?-1:1;el.textContent=w.slice(0,ci);if(!del&&ci===w.length){del=true;return setTimeout(t,1600)}if(del&&ci===0){del=false;ri=(ri+1)%R.length}setTimeout(t,del?30:60)})();
+
+// 3D scene
+try{
+var cv=document.getElementById("gl"),ren=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+ren.setPixelRatio(Math.min(devicePixelRatio,2));
+var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(45,1,.1,100);cam.position.set(0,1.5,11);
+sc.add(new THREE.AmbientLight(0x88aacc,.7));
+var dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(4,6,5);sc.add(dl);
+var pl=new THREE.PointLight(0x38e1c6,1.4,30);pl.position.set(-4,2,4);sc.add(pl);
+function M(c,m){return new THREE.MeshStandardMaterial({color:c,metalness:m||.5,roughness:.35})}
+var teal=M(0x38e1c6),amber=M(0xf2b705),steel=M(0x7f93a8,.8),dark=M(0x1b2a40,.6);
+function mesh(g,m,p){var o=new THREE.Mesh(g,m);if(p)o.position.set(p[0],p[1],p[2]);return o}
+
+// Robot arm
+var arm=new THREE.Group();sc.add(arm);
+arm.add(mesh(new THREE.CylinderGeometry(1.1,1.3,.4,32),dark,[0,0,0]));
+var j1=new THREE.Group();j1.position.y=.2;arm.add(j1);
+j1.add(mesh(new THREE.CylinderGeometry(.55,.55,.7,24),steel,[0,.35,0]));
+var j2=new THREE.Group();j2.position.y=.8;j1.add(j2);
+j2.add(mesh(new THREE.SphereGeometry(.45,24,16),amber));
+j2.add(mesh(new THREE.BoxGeometry(.5,2.3,.5),teal,[0,1.15,0]));
+var j3=new THREE.Group();j3.position.y=2.3;j2.add(j3);
+j3.add(mesh(new THREE.SphereGeometry(.38,24,16),amber));
+j3.add(mesh(new THREE.BoxGeometry(.4,1.9,.4),teal,[0,.95,0]));
+var g=new THREE.Group();g.position.y=1.95;j3.add(g);
+g.add(mesh(new THREE.BoxGeometry(.8,.2,.3),steel));
+var fa=mesh(new THREE.BoxGeometry(.14,.6,.26),amber,[-.3,.35,0]),fb=mesh(new THREE.BoxGeometry(.14,.6,.26),amber,[.3,.35,0]);g.add(fa,fb);
+
+// Gears
+function gear(r,n,m){var G=new THREE.Group();G.add(mesh(new THREE.CylinderGeometry(r,r,.4,40),m));
+for(var i=0;i<n;i++){var a=i/n*Math.PI*2,t=mesh(new THREE.BoxGeometry(.32,.4,.4),m,[Math.cos(a)*(r+.1),0,Math.sin(a)*(r+.1)]);t.rotation.y=-a;G.add(t)}
+G.add(mesh(new THREE.CylinderGeometry(r*.3,r*.3,.5,20),dark));G.rotation.x=Math.PI/2;return G}
+var gA=gear(1.3,12,steel),gB=gear(.8,8,amber);
+var gw=new THREE.Group();gw.add(gA,gB);sc.add(gw);gA.position.set(0,0,0);gB.position.set(2.2,0,0);
+
+// Particles
+var N=500,pos=new Float32Array(N*3);for(var i=0;i<N*3;i++)pos[i]=(Math.random()-.5)*34;
+var pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x38e1c6,size:.06,transparent:true,opacity:.7}));sc.add(pts);
+
+var mx=0,my=0,sy=0,wide=true;
+addEventListener("pointermove",function(e){mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1});
+function size(){var w=innerWidth,h=innerHeight;ren.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();wide=w>760;
+arm.position.set(wide?3.2:0,wide?-2.4:-1.2,0);arm.scale.setScalar(wide?1:.8);
+gw.position.set(wide?-6.2:-3.4,wide?2.4:3.6,-3);gw.scale.setScalar(wide?1:.7)}
+size();addEventListener("resize",size);
+var clock=new THREE.Clock();
+(function loop(){requestAnimationFrame(loop);
+var t=clock.getElapsedTime(),k=calm?0:1,sp=Math.min(scrollY/Math.max(1,document.body.scrollHeight-innerHeight),1);
+sy+=(sp-sy)*.06;
+j1.rotation.y=k*Math.sin(t*.5)*.5+mx*.9+sy*Math.PI*2;
+j2.rotation.z=-.5+k*Math.sin(t*.8)*.25+my*.4;
+j3.rotation.z=.9+k*Math.sin(t*1.1+1)*.3-my*.3;
+g.rotation.z=Math.sin(t*.7)*.3;
+var o=.18+(Math.sin(t*2)+1)*.12;fa.position.x=-o-.12;fb.position.x=o+.12;
+gA.rotation.y=t*.4*k;gB.rotation.y=-t*.4*1.5*k;gw.rotation.z=Math.sin(t*.2)*.1;
+pts.rotation.y=t*.02*k+sy*1.5;
+cam.position.y=1.5-sy*2;cam.position.x=Math.sin(sy*Math.PI*2)*1.2;cam.lookAt(0,0,0);
+ren.render(sc,cam)})();
+}catch(e){document.getElementById("gl").style.display="none"}
+</script>
+</body>
+</html>
